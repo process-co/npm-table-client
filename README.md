@@ -1,8 +1,8 @@
 # @process.co/table-client
 
 Framework-neutral TypeScript client for the Process Table v2 API. It supports
-Node.js and Vercel server runtimes with dual ESM/CommonJS exports and no runtime
-dependencies.
+server-side JavaScript runtimes with standards-compliant `fetch`, dual
+ESM/CommonJS exports, and no runtime dependencies.
 
 ## Install
 

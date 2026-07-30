@@ -48,11 +48,24 @@ jobs:
         env:
           RELEASE_VERSION: ${{ steps.version.outputs.value }}
         run: |
+          package="@process.co/table-client@${RELEASE_VERSION}"
+          for attempt in {1..20}; do
+            if npm view "$package" version --json >/dev/null 2>&1; then
+              break
+            fi
+            if [[ "$attempt" == "20" ]]; then
+              echo "::error::${package} was not visible in the npm registry after 100 seconds"
+              exit 1
+            fi
+            echo "Waiting for ${package} to become visible in the npm registry (${attempt}/20)"
+            sleep 5
+          done
+
           consumer="${RUNNER_TEMP}/table-client-consumer"
           mkdir -p "$consumer"
           cd "$consumer"
           npm init --yes
-          npm install "@process.co/table-client@${RELEASE_VERSION}"
+          npm install "$package"
           node --input-type=module --eval \
             "await import('@process.co/table-client')"
           node --eval "require('@process.co/table-client')"

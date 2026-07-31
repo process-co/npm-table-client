@@ -179,6 +179,12 @@ type RowAttachmentRef = {
 type LayoutRow<TColumns extends TableColumns = TableColumns> = CanonicalRow<TColumns> & {
     hints?: RowHints;
 };
+type LayoutEnrichment = {
+    datasetId: string;
+    localKey: string;
+    remoteKey: string;
+    columnIds: string[];
+};
 type RowDetailResponse<TColumns extends TableColumns = TableColumns> = {
     row: CanonicalRow<TColumns>;
     hints?: RowHints;
@@ -199,6 +205,7 @@ type LayoutResponse<TColumns extends TableColumns = TableColumns> = {
     primaryGroupingColumnId?: string;
     views?: MetadataView[];
     capabilities?: MetadataCapabilities;
+    enrichment?: LayoutEnrichment;
 };
 type PatchMetadataRequest = {
     columns?: MetadataColumn[];
@@ -397,4 +404,4 @@ declare class TableServiceError extends Error {
 declare function normalizeErrorCode(code: string): string;
 declare function mapStatusToDefaultCode(status: number): TableErrorCode;
 
-export { type ActivityLogEntry, type AttachRowFileRequest, type AttachRowFileResponse, type CanonicalRow, type Capabilities, type DatasetBinding, type DatasetDiscoveryItem, type DatasetDiscoveryResponse, type DatasetResponse, type DeleteRowResponse, type EnvelopeFailure, type EnvelopeSuccess, type FileBinding, type GroupCount, type ImportRowsRequest, type ImportRowsResponse, type InsertRowRequest, type LayoutResponse, type LayoutRow, type MetadataCapabilities, type MetadataColumn, type MetadataGroup, type MetadataOption, type MetadataResponse, type MetadataSubitemColumn, type MetadataSubitemProjection, type MetadataView, type MetadataViewColumnPlane, type MetadataViewFilter, type MetadataViewSort, type MoveRowsRequest, type MoveRowsResponse, type PatchMetadataRequest, type PatchRowRequest, type PurgeColumnsRequest, type PurgeColumnsResponse, type QueryFilter, type QueryFilterCondition, type QueryFilterOperator, type QueryRowsRequest, type QueryRowsResponse, type QuerySortClause, type RowAttachmentRef, type RowDetailResponse, type RowHints, type RowIterationOptions, type StorageMode, type SyncMeta, type SyncStatus, TABLE_CLIENT_LIMITS, TABLE_ERROR_CODES, TableClient, type TableClientConfig, type TableColumns, type TableErrorCode, type TableMutationContext, type TableRowMutationContext, TableServiceError, type TriggerSyncResponse, mapStatusToDefaultCode, normalizeErrorCode };
+export { type ActivityLogEntry, type AttachRowFileRequest, type AttachRowFileResponse, type CanonicalRow, type Capabilities, type DatasetBinding, type DatasetDiscoveryItem, type DatasetDiscoveryResponse, type DatasetResponse, type DeleteRowResponse, type EnvelopeFailure, type EnvelopeSuccess, type FileBinding, type GroupCount, type ImportRowsRequest, type ImportRowsResponse, type InsertRowRequest, type LayoutEnrichment, type LayoutResponse, type LayoutRow, type MetadataCapabilities, type MetadataColumn, type MetadataGroup, type MetadataOption, type MetadataResponse, type MetadataSubitemColumn, type MetadataSubitemProjection, type MetadataView, type MetadataViewColumnPlane, type MetadataViewFilter, type MetadataViewSort, type MoveRowsRequest, type MoveRowsResponse, type PatchMetadataRequest, type PatchRowRequest, type PurgeColumnsRequest, type PurgeColumnsResponse, type QueryFilter, type QueryFilterCondition, type QueryFilterOperator, type QueryRowsRequest, type QueryRowsResponse, type QuerySortClause, type RowAttachmentRef, type RowDetailResponse, type RowHints, type RowIterationOptions, type StorageMode, type SyncMeta, type SyncStatus, TABLE_CLIENT_LIMITS, TABLE_ERROR_CODES, TableClient, type TableClientConfig, type TableColumns, type TableErrorCode, type TableMutationContext, type TableRowMutationContext, TableServiceError, type TriggerSyncResponse, mapStatusToDefaultCode, normalizeErrorCode };
